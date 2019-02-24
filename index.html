@@ -1,0 +1,74 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.1/css/foundation-float.css">
+
+</head>
+
+<body>
+  <div id="app">
+    <div v-if="!gameRunning">
+
+    <div class="row">
+      <div class="medium-offset-4 medium-4 columns">
+        <h3 class="text-center">Enter Players</h3>
+        <div class="row collapse">
+          <div class="small-10 columns">
+            <input v-model="playerEntry" v-on:keyup.enter="addPlayer" type="text" placeholder="Enter player name">
+          </div>
+          <div class="small-2 columns">
+            <a href="#" v-on:click="addPlayer" class="button postfix">Add</a>
+          </div>
+        </div>
+        <div v-if="players.length > 0">
+          <div class="row-collapse" v-for="player in players">
+            <div class="small-10 columns">
+              <h3>{{player}}</h3>
+            </div>
+            <div class="small-2 columns">
+              <a href="#" v-on:click="removePlayer(player)" class="button alert postfix">-</a>
+            </div>
+          </div>
+        </div>
+        <a href="#" v-on:click="startGame" class="button success medium-12 columns">Start Game</a>
+      </div>
+    </div>
+
+    </div>
+    <div v-else>
+      <div class="row">
+        <div class="medium-4 columns">
+          <div v-for="player in players">
+            <h3 v-if="player == players[curPlayer]" v-on:click="showTotals(player)" class="rolling">{{player}}: {{totalScore(player)}}</h3>
+            <h3 v-else v-on:click="showTotals(player)">{{player}}: {{totalScore(player)}}</h3>
+          </div>
+        </div>
+        <div class="medium-4 columns">
+          <div class="">
+            <h3>Roll value</h3>
+            <input v-model="curScore" v-on:keyup.right="nextPlayer" v-on:keyup.left="prevPlayer" v-on:keyup.enter="addPoints" type="number" placeholder="Enter score">
+          </div>
+            <div class="row collapse">
+              <div class="small-6 columns">
+                <a href="#" v-on:click="prevPlayer" class="button secondary medium-12 columns">Previous Player</a>
+              </div>
+              <div class="small-6 columns">
+                <a href="#" v-on:click="nextPlayer" class="button primary medium-12 columns">Next Player</a>
+              </div>
+            </div>
+        </div>
+        <div class="medium-4 columns">
+        </div>
+        </div>
+        <div class="row">
+          <img src="rules.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>
