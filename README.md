@@ -1,7 +1,7 @@
-###INSTRUCTIONS
+### INSTRUCTIONS
 To run the application, simply download the files to a folder and then open index.html in your browser.
 
-###FEATURES
+### FEATURES
 Add all players before starting the game. This can be done via the "add" button or the enter key on the keyboard.
 
 Once all players have been added, click "Start Game"
